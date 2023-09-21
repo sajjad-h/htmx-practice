@@ -3,7 +3,10 @@
         <img src="spinner.gif">
     </span><br>
     <form
-        hx-post=""    
+        hx-post="/api/users/"
+        hx-swap="none"
+
+
     >
         <label for="name">Name</label>
         <input id="name"
@@ -13,6 +16,7 @@
                hx-post="/api/users/validateName"
                hx-target="#name-error"
                hx-swap="innerHtml"
+               hx-indicator="#indicator"
         >
         <span id="name-error" style="color: red"></span><br>
         <label for="age">Age</label>

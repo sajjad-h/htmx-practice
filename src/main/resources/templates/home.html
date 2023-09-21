@@ -10,7 +10,8 @@
 <body style="background-color: white">
     <h1>Hello htmx</h1>
     <div hx-trigger="load" hx-get="/views/users/createUserForm"></div>
-    <div hx-trigger="load" hx-get="/views/users/usersList"></div>
+    <div hx-trigger="load, refreshUsersList from:body" hx-get="/views/users/usersList"></div>
+    <div id="user-details"></div>
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 </body>
 

@@ -12,7 +12,11 @@
                 </thead>
                 <tbody>
                     <tr th:each="user : ${usersList}">
-                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.id}"
+                            hx-trigger="click"
+                            hx:get="|/views/users/byId/${user.id}|"
+                            hx-target="#user-details"
+                        ></td>
                         <td th:text="${user.name}"></td>
                         <td th:text="${user.age}"></td>
                         <td th:text="${user.location}"></td>
@@ -21,5 +25,4 @@
             </table>
         </div>
     </div>
-
 </div>
