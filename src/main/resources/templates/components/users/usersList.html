@@ -8,6 +8,7 @@
                         <th>Name</th>
                         <th>Age</th>
                         <th>Location</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,6 +21,12 @@
                         <td th:text="${user.name}"></td>
                         <td th:text="${user.age}"></td>
                         <td th:text="${user.location}"></td>
+                        <td>
+                            <button hx:get="|/views/users/edit/${user.id}|" hx-target="#staticBackdrop-here" hx-trigger="click" class="btn btn-primary"
+                            data-bs-toggle="modal" data-bs-target="#staticBackdrop-here">
+                                Edit
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

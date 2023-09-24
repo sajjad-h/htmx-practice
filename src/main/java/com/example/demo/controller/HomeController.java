@@ -9,4 +9,14 @@ public class HomeController {
     public String getHome() {
         return "home";
     }
+    
+    @GetMapping("/modal")
+    public String getModal() {
+        return "components/modal";
+    }
+    
+    @GetMapping("/backdrop-modal")
+    public String getBackdropModal() {
+        return "components/backdrop-modal";
+    }
 }
