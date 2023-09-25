@@ -2,33 +2,40 @@
     <span id="indicator" class="htmx-indicator">
         <img src="spinner.gif">
     </span><br>
-    <form
-        hx-post="/api/users/"
-        hx-swap="none"
-
-
-    >
-        <label for="name">Name</label>
-        <input id="name"
-               type="text"
-               name="name"
-               hx-trigger="change"
-               hx-post="/api/users/validateName"
-               hx-target="#name-error"
-               hx-swap="innerHtml"
-               hx-indicator="#indicator"
-        >
-        <span id="name-error" style="color: red"></span><br>
-        <label for="age">Age</label>
-        <input id="age"
-               type="number"
-               name="age"
-        >
-        <label for="location">Location</label>
-        <input id="location"
-               type="text"
-               name="location">
-        <br>
-        <button type="submit">Submit</button>
+    <h3>Add New User</h3><hr>
+    <form hx-post="/api/users/" hx-swap="none">
+        <div class="row pt-2 g-3 align-items-center">
+            <div class="col-auto">
+                <label for="name" class="col-form-label">Name</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
+        </div>
+        <div class="row pt-2 g-3 align-items-center">
+            <div class="col-auto">
+                <label for="email" class="col-form-label">Email</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" name="email" id="email" class="form-control">
+            </div>
+        </div>
+        <div class="row pt-2 g-3 align-items-center">
+            <div class="col-auto">
+                <label for="age" class="col-form-label">Age</label>
+            </div>
+            <div class="col-auto">
+                <input type="number" name="age" id="age" class="form-control">
+            </div>
+        </div>
+        <div class="row pt-2 g-3 align-items-center">
+            <div class="col-auto">
+                <label for="location" class="col-form-label">Location</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" name="location" id="location" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

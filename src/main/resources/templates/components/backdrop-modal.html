@@ -9,10 +9,15 @@
             </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" hx-ext="response-targets">
             <h3>Edit Details</h3>
+            <div id="get-400-error"></div>
 
-            <form hx-put="/api/users/">
+            <form 
+                hx-put="/api/users/"
+                hx-target-400="#get-400-error"
+                hx-swap="innerHTML"
+            >
                 <input type="text" name="id" th:value="${user.id}" id="id" class="form-control" hidden>
                 <div class="row pt-2 g-3 align-items-center">
                     <div class="col-auto">
@@ -21,12 +26,15 @@
                     <div class="col-auto">
                         <input type="text" name="name" th:value="${user.name}" id="name" class="form-control">
                     </div>
-                    <!-- <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                        Must be 8-20 characters long.
-                      </span>
-                    </div> -->
                 </div>
+                <div class="row pt-2 g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="email" class="col-form-label">Email</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="email" th:value="${user.email}" id="email" class="form-control">
+                    </div>
+                </div>                
                 <div class="row pt-2 g-3 align-items-center">
                     <div class="col-auto">
                         <label for="age" class="col-form-label">Age</label>
@@ -34,11 +42,6 @@
                     <div class="col-auto">
                         <input type="number" name="age" th:value="${user.age}" id="age" class="form-control">
                     </div>
-                    <!-- <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                        Must be 8-20 characters long.
-                      </span>
-                    </div> -->
                 </div>
                 <div class="row pt-2 g-3 align-items-center">
                     <div class="col-auto">
@@ -47,16 +50,11 @@
                     <div class="col-auto">
                         <input type="text" name="location" th:value="${user.location}" id="location" class="form-control">
                     </div>
-                    <!-- <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                        Must be 8-20 characters long.
-                      </span>
-                    </div> -->
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
-            <table hx-trigger="refreshUsersList">
+            <!-- <table hx-trigger="refreshUsersList">
                 <tbody>
                     <tr>
                         <td>ID</td>
@@ -75,7 +73,7 @@
                         <td th:text="${user.location}"></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
         <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
