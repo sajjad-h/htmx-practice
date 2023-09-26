@@ -34,17 +34,13 @@ public class UserViewController {
     @HxRequest
     @GetMapping("/byId/{userId}")
     public String getUser(@PathVariable("userId") String id, Model model) {
-        System.out.println(id);
         model.addAttribute("user", userRepository.findById(id));
         return "components/users/userDetails";
     }
 
-    
-
     @HxRequest
     @GetMapping("/edit/{userId}")
     public String getUserEditable(@PathVariable("userId") String id, Model model) {
-        System.out.println(id);
         model.addAttribute("user", userRepository.findById(id));
         return "components/backdrop-modal";
     }

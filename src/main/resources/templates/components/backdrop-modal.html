@@ -1,23 +1,28 @@
-<!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true"> -->
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                Modal title
+                Edit Details
             </h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button id="close-modal-x" hx-trigger="load" type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
         </div>
-        <div class="modal-body" hx-ext="response-targets">
-            <h3>Edit Details</h3>
-            <div id="get-400-error"></div>
-
-            <form 
-                hx-put="/api/users/"
-                hx-target-400="#get-400-error"
-                hx-swap="innerHTML"
-            >
+        <form hx-put="/api/users/" hx-target="#staticBackdropInit-here" hx-target-400="#get-400-error"
+            hx-swap="innerHTML" data-script="
+                            on htmx:afterRequest
+                                log detail.xhr.status
+                                log #staticBackdrop-here
+                                if detail.xhr.status is 200
+                                    log 'good job!'
+                                    remove .show from .modal-backdrop
+                                    remove .fade from .modal-backdrop
+                                    remove .modal-backdrop from .modal-backdrop
+                                    remove .modal-open from body
+                                    set body.style.overflow to 'visible'
+                            end
+                ">
+            <div class="modal-body">
+                <div id="get-400-error"></div>
                 <input type="text" name="id" th:value="${user.id}" id="id" class="form-control" hidden>
                 <div class="row pt-2 g-3 align-items-center">
                     <div class="col-auto">
@@ -34,7 +39,7 @@
                     <div class="col-auto">
                         <input type="text" name="email" th:value="${user.email}" id="email" class="form-control">
                     </div>
-                </div>                
+                </div>
                 <div class="row pt-2 g-3 align-items-center">
                     <div class="col-auto">
                         <label for="age" class="col-form-label">Age</label>
@@ -48,37 +53,14 @@
                         <label for="location" class="col-form-label">Location</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="location" th:value="${user.location}" id="location" class="form-control">
+                        <input type="text" name="location" th:value="${user.location}" id="location"
+                            class="form-control">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-            <!-- <table hx-trigger="refreshUsersList">
-                <tbody>
-                    <tr>
-                        <td>ID</td>
-                        <td th:text="${user.id}"></td>
-                    </tr>
-                    <tr>
-                        <td>Name</td>
-                        <td th:text="${user.name}"></td>
-                    </tr>
-                    <tr>
-                        <td>Age</td>
-                        <td th:text="${user.age}"></td>
-                    </tr>
-                    <tr>
-                        <td>Location</td>
-                        <td th:text="${user.location}"></td>
-                    </tr>
-                </tbody>
-            </table> -->
-        </div>
-        <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-        </div> -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
     </div>
 </div>
-<!-- </div> -->

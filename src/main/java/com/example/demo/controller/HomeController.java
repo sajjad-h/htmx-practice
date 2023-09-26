@@ -30,6 +30,8 @@ public class HomeController {
     @PutMapping("/dummy")
     public  ResponseEntity<String> getDummyResponseEntity() {
         return new ResponseEntity<String>("not found", HttpStatus.NOT_FOUND);
+        // return new ResponseEntity<String>("success", HttpStatus.OK);
+        // return new ResponseEntity<String>("survice unavailable", HttpStatus.SERVICE_UNAVAILABLE);
     }
     
     // @PutMapping("/dummy")

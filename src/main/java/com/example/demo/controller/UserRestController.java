@@ -78,6 +78,7 @@ public class UserRestController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(renderedHtml);
         }
+        userRepository.update(user);
         return ResponseEntity.status(HttpStatus.OK).body(templateEngine.process("backdrop-modal-init", new Context()));
     }
 }
