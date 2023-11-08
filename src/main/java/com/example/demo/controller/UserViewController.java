@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 
 import io.github.wimdeblauwe.htmx.spring.boot.mvc.HxRequest;
@@ -45,4 +46,14 @@ public class UserViewController {
         return "components/backdrop-modal";
     }
 
+    @HxRequest
+    @GetMapping("/star/toogle/{userId}")
+    public String makeToogleStar(@PathVariable("userId") String id, Model model) {
+        User user = userRepository.findById(id);
+        user.starred = !user.starred;
+        userRepository.update(user);
+        System.out.println(user.toString());
+        model.addAttribute("user", user);
+        return "components/users/usersListRow";
+    }
 }

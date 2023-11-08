@@ -1,0 +1,26 @@
+<tr>
+    <td th:text="${user.id}" hx-trigger="click" hx:get="|/views/users/byId/${user.id}|" hx-target="#user-details"></td>
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.age}"></td>
+    <td th:text="${user.location}"></td>
+    <td align="center">
+        <div hx:get="|/views/users/star/toogle/${user.id}|" hx-target="closest tr" hx-swap="outerHTML" hx-trigger="click">
+            <span th:if="${user.starred == true}"><i class="bi bi-star-fill"></i></span>
+            <span th:unless="${user.starred == true}"><i class="bi bi-star"></i></span>
+        </div>
+    </td>
+    <td>
+        <button hx:get="|/views/users/edit/${user.id}|" hx-target="#staticBackdrop-here" hx-trigger="click"
+            class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop-here">
+            Edit
+        </button>
+    </td>
+    <td>
+        <button hx:get="|/views/users/star/toogle/${user.id}|" hx-target="closest tr" hx-swap="outerHTML"
+            hx-trigger="click" class="btn btn-primary">
+            <span th:if="${user.starred == true}">Unstar</span>
+            <span th:unless="${user.starred == true}">Star</span>
+        </button>
+    </td>
+</tr>
